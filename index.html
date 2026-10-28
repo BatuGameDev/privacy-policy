@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Batuhan Öztürk • Games & Legal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Apple Minimalist Palette */
+            --bg-page: #fbfbfd;
+            --bg-card: #ffffff;
+            --text-primary: #1d1d1f;
+            --text-secondary: #86868b;
+            --text-muted: #a1a1a6;
+            --border-light: rgba(0, 0, 0, 0.08);
+            --border-card: rgba(0, 0, 0, 0.06);
+            --accent-blue: #0071e3;
+            --accent-blue-hover: #0077ed;
+            --segmented-bg: #efeff2;
+            --segmented-thumb: #ffffff;
+            --shadow-card: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+            --shadow-thumb: 0 2px 8px rgba(0, 0, 0, 0.12), 0 0 1px rgba(0, 0, 0, 0.08);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-page: #000000;
+                --bg-card: #161617;
+                --text-primary: #f5f5f7;
+                --text-secondary: #86868b;
+                --text-muted: #6e6e73;
+                --border-light: rgba(255, 255, 255, 0.12);
+                --border-card: rgba(255, 255, 255, 0.08);
+                --accent-blue: #2997ff;
+                --accent-blue-hover: #40a9ff;
+                --segmented-bg: #262629;
+                --segmented-thumb: #333336;
+                --shadow-card: 0 8px 30px rgba(0, 0, 0, 0.5);
+                --shadow-thumb: 0 2px 8px rgba(0, 0, 0, 0.4);
+            }
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif;
+            background-color: var(--bg-page);
+            color: var(--text-primary);
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
+            padding: 50px 20px 70px;
+        }
+
+        .container {
+            max-width: 820px;
+            margin: 0 auto;
+        }
+
+        /* -------------------------------------------------------------
+           HEADER (Apple Minimal Header)
+        ------------------------------------------------------------- */
+        header {
+            text-align: center;
+            margin-bottom: 28px;
+        }
+
+        .developer-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .developer-tagline {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-weight: 400;
+            letter-spacing: -0.01em;
+        }
+
+        /* -------------------------------------------------------------
+           APPLE SEGMENTED PILL BAR
+        ------------------------------------------------------------- */
+        .segmented-control {
+            display: flex;
+            background: var(--segmented-bg);
+            border-radius: 9999px;
+            padding: 4px;
+            gap: 2px;
+            margin: 0 auto 28px;
+            width: 100%;
+            max-width: 680px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .segment-btn {
+            flex: 1;
+            min-width: 110px;
+            padding: 9px 16px;
+            border-radius: 9999px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            transition: color 0.18s ease, background 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
+            white-space: nowrap;
+            text-align: center;
+        }
+
+        .segment-btn:hover {
+            color: var(--text-primary);
+        }
+
+        .segment-btn.active {
+            color: var(--text-primary);
+            font-weight: 600;
+            background: var(--segmented-thumb);
+            box-shadow: var(--shadow-thumb);
+        }
+
+        /* -------------------------------------------------------------
+           CARD CONTENT
+        ------------------------------------------------------------- */
+        .content-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-card);
+            border-radius: 20px;
+            padding: 44px;
+            box-shadow: var(--shadow-card);
+        }
+
+        .tab-pane {
+            display: none;
+        }
+
+        .tab-pane.active {
+            display: block;
+            animation: appleFade 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes appleFade {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* -------------------------------------------------------------
+           GAMES TAB
+        ------------------------------------------------------------- */
+        .game-card {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            padding: 24px;
+            background: var(--bg-page);
+            border: 1px solid var(--border-light);
+            border-radius: 18px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .game-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+        }
+
+        .game-icon-img {
+            width: 104px;
+            height: 104px;
+            min-width: 104px;
+            border-radius: 23px;
+            object-fit: cover;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+            border: 1px solid var(--border-light);
+        }
+
+        .game-info {
+            flex: 1;
+        }
+
+        .game-genre-pill {
+            display: inline-block;
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-bottom: 4px;
+        }
+
+        .game-title {
+            font-size: 1.45rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--text-primary);
+            line-height: 1.25;
+            margin-bottom: 8px;
+        }
+
+        .game-desc {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            line-height: 1.55;
+        }
+
+        /* Store Badges */
+        .store-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .store-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--text-primary);
+            color: var(--bg-page);
+            padding: 8px 16px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: opacity 0.15s ease, transform 0.15s ease;
+        }
+
+        .store-badge:hover {
+            opacity: 0.88;
+            transform: translateY(-1px);
+        }
+
+        .store-badge svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+        }
+
+        /* -------------------------------------------------------------
+           TYPOGRAPHY & LEGAL SECTIONS
+        ------------------------------------------------------------- */
+        h2 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: -0.015em;
+            color: var(--text-primary);
+            margin-top: 36px;
+            margin-bottom: 12px;
+        }
+
+        h2:first-of-type {
+            margin-top: 0;
+        }
+
+        p {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            line-height: 1.7;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        li {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        li strong {
+            color: var(--text-primary);
+        }
+
+        a {
+            color: var(--accent-blue);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.15s ease;
+        }
+
+        a:hover {
+            color: var(--accent-blue-hover);
+            text-decoration: underline;
+        }
+
+        .info-card {
+            background: var(--bg-page);
+            border: 1px solid var(--border-light);
+            border-radius: 14px;
+            padding: 22px;
+            margin: 20px 0;
+        }
+
+        .info-card h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .info-card p {
+            margin-bottom: 0;
+            font-size: 0.9rem;
+        }
+
+        /* -------------------------------------------------------------
+           FOOTER (Clean Universal Footer)
+        ------------------------------------------------------------- */
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        @media (max-width: 640px) {
+            body { padding: 36px 16px; }
+            .content-card { padding: 26px 20px; }
+            .game-card { flex-direction: column; text-align: center; }
+            .store-group { justify-content: center; }
+            .developer-name { font-size: 1.35rem; }
+            .segment-btn { font-size: 0.8rem; min-width: 90px; padding: 8px 12px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- Minimal Header -->
+    <header>
+        <h1 class="developer-name">Batuhan Öztürk</h1>
+        <p class="developer-tagline">Game Developer & Designer</p>
+    </header>
+
+    <!-- Apple-style Segmented Control -->
+    <nav class="segmented-control">
+        <button class="segment-btn active" onclick="switchTab('games')">Games</button>
+        <button class="segment-btn" onclick="switchTab('privacy')">Privacy Policy</button>
+        <button class="segment-btn" onclick="switchTab('terms')">Terms of Service</button>
+        <button class="segment-btn" onclick="switchTab('deletion')">Data Deletion</button>
+        <button class="segment-btn" onclick="switchTab('contact')">Support</button>
+    </nav>
+
+    <!-- Content Card -->
+    <main class="content-card">
+
+        <!-- 🎮 TAB 1: GAMES -->
+        <section id="tab-games" class="tab-pane active">
+            <h2>Our Games</h2>
+            <p>Handcrafted puzzle and casual games designed for mobile devices.</p>
+
+            <div class="game-card">
+                <img src="color-feast-app-icon.jpg" alt="Color Feast: Candy Puzzle Icon" class="game-icon-img">
+                <div class="game-info">
+                    <span class="game-genre-pill">Puzzle • Casual</span>
+                    <h3 class="game-title">Color Feast: Candy Puzzle</h3>
+                    <p class="game-desc">Match colorful candies, solve delightful conveyor puzzles, and satisfy hungry customers in an engaging, sweet culinary puzzle adventure!</p>
+                    <div class="store-group">
+                        <a href="#" class="store-badge">
+                            <svg viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.85c.66-.82 1.11-1.96.99-3.1-.95.04-2.11.64-2.79 1.44-.59.69-1.12 1.83-.98 2.94 1.07.08 2.15-.56 2.78-1.28z"/></svg>
+                            <span>App Store</span>
+                        </a>
+                        <a href="#" class="store-badge">
+                            <svg viewBox="0 0 24 24"><path d="M3.609 1.814L13.792 12 3.61 22.186c-.194-.205-.31-.497-.31-.836V2.65c0-.339.116-.631.31-.836zM15.207 13.414l2.253 2.254-11.89 6.865 9.637-9.119zm0-2.828L5.57 1.467l11.89 6.865-2.253 2.254zm1.414 1.414l3.14 1.812c.746.431.746 1.135 0 1.566l-3.14 1.812-1.897-1.897 1.897-1.893z"/></svg>
+                            <span>Google Play</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 🔒 TAB 2: PRIVACY POLICY -->
+        <section id="tab-privacy" class="tab-pane">
+            <h2>1. Introduction & Overview</h2>
+            <p>This Privacy Policy applies to mobile games developed by <strong>Batuhan Öztürk</strong> ("we", "our", or "developer"), including <strong>Color Feast: Candy Puzzle</strong> and our other mobile titles.</p>
+            <p>We respect your personal privacy. Our games are designed to provide fun and seamless entertainment without requiring user accounts or collecting personal contact information such as your real name, street address, or phone number.</p>
+
+            <h2>2. Information We Collect</h2>
+            <p>To provide a smooth gaming experience, balance difficulty, and maintain game stability, we collect non-personal, anonymized data:</p>
+            <ul>
+                <li><strong>Gameplay & Progression:</strong> Completed levels, moves, puzzle score records, earned virtual items, and booster inventories.</li>
+                <li><strong>Anonymous Identifiers:</strong> Randomly generated User IDs (such as GameAnalytics User ID) and Device Identifiers (IDFA / IDFV) used for gameplay analytics, crash diagnostics, and advertising attribution.</li>
+                <li><strong>Diagnostics & Performance:</strong> Crash stack traces, memory usage, frame rate metrics, and device model/OS version.</li>
+            </ul>
+
+            <h2>3. In-App Purchases (IAP)</h2>
+            <p>Our games may offer optional virtual items (e.g. extra lives, booster packages). All payments are handled securely by <strong>Apple App Store</strong> (StoreKit) or <strong>Google Play Store</strong>. The developer never receives, processes, or stores your credit card, bank, or billing information.</p>
+
+            <h2>4. Third-Party Services & Publisher Partnerships</h2>
+            <p>We partner with industry-standard third-party analytics and advertising networks to provide and optimize our free-to-play puzzle games:</p>
+            <ul>
+                <li><strong>GameAnalytics:</strong> Difficulty balancing, retention rate analysis, and technical diagnostics. (<a href="https://gameanalytics.com/privacy" target="_blank" rel="noopener">Privacy Policy</a>)</li>
+                <li><strong>Advertising & Mediation Partners (AdMob, AppLovin, Unity Ads, Voodoo/Supersonic):</strong> Delivering rewarded video ads, interstitial ads, and measuring ad engagement. (<a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy</a>, <a href="https://www.applovin.com/privacy/" target="_blank" rel="noopener">AppLovin Privacy</a>)</li>
+            </ul>
+
+            <h2>5. App Tracking Transparency (ATT)</h2>
+            <p>On iOS 14.5 and newer, we respect Apple’s App Tracking Transparency framework. We will only request access to your device's advertising identifier (IDFA) with your explicit consent. You can enable or disable tracking at any time via <strong>iOS Settings &gt; Privacy & Security &gt; Tracking</strong>.</p>
+
+            <h2>6. Children’s Privacy (COPPA & GDPR-K Compliance)</h2>
+            <p>Our puzzle games are crafted for general audiences of all ages. We do not knowingly collect personal information from children under the age of 13 (or under 16 in the European Union). If you believe data has been collected inadvertently, please contact us for immediate data purging.</p>
+
+            <h2>7. Data Retention & Security</h2>
+            <p>We use industry-standard encryption for all network communications. Anonymized data is retained only as long as necessary for gameplay integrity, fraud prevention, and analytics optimization.</p>
+        </section>
+
+        <!-- 📜 TAB 3: TERMS OF SERVICE -->
+        <section id="tab-terms" class="tab-pane">
+            <h2>1. Acceptance of Terms</h2>
+            <p>By downloading, installing, or playing any game developed by Batuhan Öztürk, you agree to be bound by these Terms of Service. If you do not agree, please uninstall the game.</p>
+
+            <h2>2. License Grant</h2>
+            <p>You are granted a personal, non-exclusive, non-transferable, revocable license to play our games for personal, non-commercial entertainment purposes only.</p>
+
+            <h2>3. Virtual Items & In-Game Currency</h2>
+            <p>Virtual items (coins, lives, puzzle boosters) earned through gameplay or purchased via In-App Purchases have no real-world monetary value, cannot be redeemed for real cash, and are licensed on a limited, non-refundable basis.</p>
+
+            <h2>4. Disclaimer of Warranties</h2>
+            <p>The game is provided on an "AS IS" and "AS AVAILABLE" basis. To the maximum extent permitted by applicable law, Batuhan Öztürk disclaims all warranties and shall not be liable for any indirect or incidental damages.</p>
+        </section>
+
+        <!-- 🗑️ TAB 4: DATA DELETION -->
+        <section id="tab-deletion" class="tab-pane">
+            <h2>How to Delete Your Data</h2>
+            <p>Our games do not require account registration, usernames, or passwords. Your gameplay data and virtual items are stored locally on your device or linked to anonymous installation identifiers.</p>
+
+            <div class="info-card">
+                <h3>Direct User Control</h3>
+                <p>Because no personal account is created on an external server, you have direct, instantaneous control over deleting your data at any time without needing to wait for a support ticket.</p>
+            </div>
+
+            <div class="info-card">
+                <h3>Step 1: Delete Local Game Progress & Save Files</h3>
+                <p>To completely delete your local progress, high scores, coins, and saved game state:</p>
+                <ul style="margin-top: 10px; margin-bottom: 0;">
+                    <li><strong>On iOS:</strong> Touch and hold the game app icon on your Home Screen &gt; Tap <strong>Remove App</strong> &gt; Tap <strong>Delete App</strong>.</li>
+                    <li><strong>On Android:</strong> Open device <strong>Settings</strong> &gt; <strong>Apps</strong> &gt; Select the game &gt; Tap <strong>Storage & Cache</strong> &gt; Tap <strong>Clear Storage / Clear Data</strong> (or uninstall the app).</li>
+                </ul>
+            </div>
+
+            <div class="info-card">
+                <h3>Step 2: Reset Advertising & Tracking Identifiers</h3>
+                <p>If you wish to reset or opt out of anonymous analytics and advertising identifiers:</p>
+                <ul style="margin-top: 10px; margin-bottom: 0;">
+                    <li><strong>On iOS:</strong> Go to <strong>Settings</strong> &gt; <strong>Privacy & Security</strong> &gt; <strong>Tracking</strong> &gt; Toggle off permission for the game. (You can also go to <strong>Apple Advertising</strong> and toggle off Personalized Ads).</li>
+                    <li><strong>On Android:</strong> Go to <strong>Settings</strong> &gt; <strong>Google</strong> &gt; <strong>Ads</strong> &gt; Tap <strong>Reset advertising ID</strong> or <strong>Delete advertising ID</strong>.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ✉️ TAB 5: SUPPORT -->
+        <section id="tab-contact" class="tab-pane">
+            <h2>Support & Contact</h2>
+            <p>Have questions about game mechanics, bugs, privacy, or publisher inquiries? We are here to help.</p>
+
+            <div class="info-card">
+                <h3>Developer Details</h3>
+                <p><strong>Developer:</strong> Batuhan Öztürk</p>
+                <p style="margin-top: 6px;"><strong>Support Email:</strong> <a href="mailto:batuhanozturkstore@gmail.com">batuhanozturkstore@gmail.com</a></p>
+                <p style="margin-top: 6px;"><strong>Response Time:</strong> We typically respond to support inquiries within 7 to 30 days.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Clean Universal Footer -->
+    <footer>
+        <p>© 2026 Batuhan Öztürk. All rights reserved.</p>
+    </footer>
+
+</div>
+
+<script>
+    function switchTab(tabName) {
+        document.querySelectorAll('.segment-btn').forEach(btn => btn.classList.remove('active'));
+        document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('active'));
+
+        const selectedBtn = Array.from(document.querySelectorAll('.segment-btn')).find(b => b.getAttribute('onclick').includes(tabName));
+        if (selectedBtn) selectedBtn.classList.add('active');
+
+        const selectedPane = document.getElementById('tab-' + tabName);
+        if (selectedPane) selectedPane.classList.add('active');
+    }
+</script>
+
+</body>
+</html>
