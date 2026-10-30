@@ -100,6 +100,11 @@
             max-width: 680px;
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+
+        .segmented-control::-webkit-scrollbar {
+            display: none;
         }
 
         .segment-btn {
@@ -331,7 +336,13 @@
             .game-card { flex-direction: column; text-align: center; }
             .store-group { justify-content: center; }
             .developer-name { font-size: 1.35rem; }
-            .segment-btn { font-size: 0.8rem; min-width: 90px; padding: 8px 12px; }
+            .segmented-control { justify-content: flex-start; }
+            .segment-btn {
+                flex: 0 0 auto;
+                min-width: auto;
+                font-size: 0.82rem;
+                padding: 8px 16px;
+            }
         }
     </style>
 </head>
@@ -363,10 +374,10 @@
             <p>Handcrafted puzzle and casual games designed for mobile devices.</p>
 
             <div class="game-card">
-                <img src="color-feast-app-icon.jpg" alt="Color Feast: Candy Puzzle Icon" class="game-icon-img">
+                <img src="color-feast-app-icon.jpg" alt="Color Feast: Candy Sort Puzzle Icon" class="game-icon-img">
                 <div class="game-info">
                     <span class="game-genre-pill">Puzzle • Casual</span>
-                    <h3 class="game-title">Color Feast: Candy Puzzle</h3>
+                    <h3 class="game-title">Color Feast: Candy Sort Puzzle</h3>
                     <p class="game-desc">Match colorful candies, solve delightful conveyor puzzles, and satisfy hungry customers in an engaging, sweet culinary puzzle adventure!</p>
                     <div class="store-group">
                         <a href="#" class="store-badge">
@@ -385,7 +396,7 @@
         <!-- 🔒 TAB 2: PRIVACY POLICY -->
         <section id="tab-privacy" class="tab-pane">
             <h2>1. Introduction & Overview</h2>
-            <p>This Privacy Policy applies to mobile games developed by <strong>Batuhan Öztürk</strong> ("we", "our", or "developer"), including <strong>Color Feast: Candy Puzzle</strong> and our other mobile titles.</p>
+            <p>This Privacy Policy applies to mobile games developed by <strong>Batuhan Öztürk</strong> ("we", "our", or "developer"), including <strong>Color Feast: Candy Sort Puzzle</strong> and our other mobile titles.</p>
             <p>We respect your personal privacy. Our games are designed to provide fun and seamless entertainment without requiring user accounts or collecting personal contact information such as your real name, street address, or phone number.</p>
 
             <h2>2. Information We Collect</h2>
@@ -488,7 +499,10 @@
         document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('active'));
 
         const selectedBtn = Array.from(document.querySelectorAll('.segment-btn')).find(b => b.getAttribute('onclick').includes(tabName));
-        if (selectedBtn) selectedBtn.classList.add('active');
+        if (selectedBtn) {
+            selectedBtn.classList.add('active');
+            selectedBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        }
 
         const selectedPane = document.getElementById('tab-' + tabName);
         if (selectedPane) selectedPane.classList.add('active');
